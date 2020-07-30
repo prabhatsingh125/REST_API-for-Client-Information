@@ -33,7 +33,7 @@ public class ClientController {
     @GetMapping("/{id}")
     public Client GetEachById(@PathVariable Long id) throws ClientNotFoundException {
         return clientRepository.findById(id)
-                .orElseThrow(()-> new ClientNotFoundException(id));
+                .orElseThrow(()-> new ClientNotFoundException("The client is not found with id : "+id));
     }
 
     @PostMapping()
@@ -45,7 +45,7 @@ public class ClientController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateClient(@PathVariable Long id,@RequestBody Client client1) throws ClientNotFoundException{
         Client client = clientRepository.findById(id)
-                .orElseThrow(()-> new ClientNotFoundException(id));
+                .orElseThrow(()-> new ClientNotFoundException("The client is not found with id : "+id));
 
         client.setName(client1.getName());
         client.setMobileNumber(client1.getMobileNumber());
@@ -59,7 +59,7 @@ public class ClientController {
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable Long id) throws ClientNotFoundException{
         Client client = clientRepository.findById(id)
-                .orElseThrow(()-> new ClientNotFoundException(id));
+                .orElseThrow(()-> new ClientNotFoundException("The client is not found with id : "+id));
         clientRepository.delete(client);
         return new ResponseEntity<>("Client's data is deleted now",HttpStatus.OK);
     }

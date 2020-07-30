@@ -4,10 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
-public class ClientNotFoundException extends Exception{
-    private Long client_id;
+public class ClientNotFoundException extends RuntimeException{
+    private static final long serialVersionUID = 1L;
 
-    public ClientNotFoundException(Long client_id) {
-        super(String.format("Client is not found with this id : %s",client_id));
+    public ClientNotFoundException(String message) {
+        super(message);
     }
 }
