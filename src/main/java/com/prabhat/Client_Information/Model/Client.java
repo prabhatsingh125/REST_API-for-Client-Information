@@ -1,5 +1,8 @@
 package com.prabhat.Client_Information.Model;
 
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.BatchSize;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,12 +12,14 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false,unique = true)
     private String mobileNumber;
 
+    @NotNull
     private String emailId;
 
     private String address;
